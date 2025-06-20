@@ -66,6 +66,12 @@
                     IsTabStop="{Binding ElementName=ShortcutContentControl, Path=IsWarningAltGr, Mode=OneWay}"
                     Severity="Warning" />
             </Grid>
+
+            <tk7controls:MarkdownTextBlock
+                x:Uid="InvalidShortcutWarningLabel"
+                Background="Transparent"
+                FontSize="12"
+                Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
         </StackPanel>
     </Grid>
 </UserControl>
