@@ -24,15 +24,14 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <PropertyGroup>
-	    <SelfContained>true</SelfContained>
-	    <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
-	    <PublishTrimmed>true</PublishTrimmed>
-	    <PublishSingleFile>false</PublishSingleFile>
-	    <DisableRuntimeMarshalling>false</DisableRuntimeMarshalling>
-	    <PublishAot>true</PublishAot>
-	    <EnableMsixTooling>true</EnableMsixTooling>
-    </PropertyGroup>	
+    <SelfContained>true</SelfContained>
+    <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+    <PublishTrimmed>true</PublishTrimmed>
+    <PublishSingleFile>false</PublishSingleFile>
+    <DisableRuntimeMarshalling>false</DisableRuntimeMarshalling>
+    <PublishAot>true</PublishAot>
+    <EnableMsixTooling>true</EnableMsixTooling>
+  </PropertyGroup>	
 
   <PropertyGroup Condition="'$(CIBuild)'=='true'">
     <GenerateAppxPackageOnBuild>true</GenerateAppxPackageOnBuild>
@@ -183,9 +182,8 @@
     the Windows App SDK Nuget package has not yet been restored.
   -->
   <PropertyGroup Condition="'$(DisableHasPackageAndPublishMenuAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
-  <ItemGroup>
-    <Content Include="$(PkgAdaptiveCards_Rendering_WinUI3)\$(AdaptiveCardsNative)\AdaptiveCards.Rendering.WinUI3.dll" Link="AdaptiveCards.Rendering.WinUI3.dll" CopyToOutputDirectory="PreserveNewest" />
-  </ItemGroup>
+    <HasPackageAndPublishMenu>true</HasPackageAndPublishMenu>
+  </PropertyGroup>
   <ItemGroup>
     <Content Update="..\Microsoft.CmdPal.UI.ViewModels\Assets\template.zip">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

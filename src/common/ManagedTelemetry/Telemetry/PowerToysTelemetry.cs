@@ -38,6 +38,17 @@ namespace Microsoft.PowerToys.Telemetry
         public void WriteEvent<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicProperties)] T>(T telemetryEvent)
             where T : EventBase, IEvent
         {
+            if (DataDiagnosticsSettings.GetEnabledValue())
+            {
+                this.Write<T>(
+                    telemetryEvent.EventName,
+                    new EventSourceOptions()
+                    {
+                        Keywords = ProjectKeywordMeasure,
+                        Tags = ProjectTelemetryTagProductAndServicePerformance,
+                    },
+                    telemetryEvent);
+            }
         }
     }
 }
