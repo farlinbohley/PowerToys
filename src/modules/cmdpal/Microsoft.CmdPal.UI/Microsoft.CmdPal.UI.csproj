@@ -86,21 +86,16 @@
     <PackageReference Include="Microsoft.WindowsAppSDK" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" />
 	<PackageReference Include="WinUIEx" />
+
     <PackageReference Include="Microsoft.Windows.CsWin32">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
 
     <PackageReference Include="Microsoft.Extensions.Hosting" />
-
     <PackageReference Include="System.Net.Http" />
-
     <PackageReference Include="System.Private.Uri" />
     <PackageReference Include="System.Text.Json" />
-
-    <PackageReference Include="AdaptiveCards.ObjectModel.WinUI3" GeneratePathProperty="true" />
-    <PackageReference Include="AdaptiveCards.Rendering.WinUI3" GeneratePathProperty="True" />
-    <PackageReference Include="AdaptiveCards.Templating" />
     <PackageReference Include="System.Text.RegularExpressions" />
   </ItemGroup>
 
