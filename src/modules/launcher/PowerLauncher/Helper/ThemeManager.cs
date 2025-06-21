@@ -10,6 +10,7 @@ using ManagedCommon;
 using Microsoft.Win32;
 using Wox.Infrastructure.Image;
 using Wox.Infrastructure.UserSettings;
+using System.Runtime.InteropServices;
 
 namespace PowerLauncher.Helper
 {
@@ -24,6 +25,10 @@ namespace PowerLauncher.Helper
         public Theme CurrentTheme { get; private set; }
 
         public event Common.UI.ThemeChangedHandler ThemeChanged;
+
+        [DllImport("dwmapi.dll", PreserveSig = false)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool DwmIsCompositionEnabled();
 
         public ThemeManager(PowerToysRunSettings settings, MainWindow mainWindow)
         {
@@ -48,7 +53,18 @@ namespace PowerLauncher.Helper
             // Need to disable WPF0001 since setting Application.Current.ThemeMode is experimental
             // https://learn.microsoft.com/en-us/dotnet/desktop/wpf/whats-new/net90#set-in-code
 #pragma warning disable WPF0001
-            Application.Current.ThemeMode = theme == Theme.Light ? ThemeMode.Light : ThemeMode.Dark;
+            try
+            {
+                if (DwmIsCompositionEnabled())
+                {
+                    Application.Current.ThemeMode = theme == Theme.Light ? ThemeMode.Light : ThemeMode.Dark;
+                }
+            }
+            catch (Exception)
+            {
+                // DwmIsCompositionEnabled can throw if dwmapi.dll is not available.
+                // Or if DWM composition is disabled.
+            }
 #pragma warning restore WPF0001
 
             if (theme is Theme.Dark or Theme.Light)
